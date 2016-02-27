@@ -1,6 +1,7 @@
 define(function (require) {
     var activity = require("sugar-web/activity/activity");
 	var env = require("sugar-web/env");
+	var filterpalette = require("filterpalette");
 	var isFavorite = false;
 
     // Manipulate the DOM only when it is ready.
@@ -9,6 +10,13 @@ define(function (require) {
         activity.setup();
 
 		// Create palette
+        var filterButton = document.getElementById("filter-button");
+		filterpalette = new filterpalette.FilterPalette(filterButton, undefined);
+		filterpalette.addEventListener('filter', function() {
+			app.setFilter({subject: filterpalette.getFilter()});
+			Util.saveContext();
+			filterpalette.popDown();
+		});
 		document.getElementById("settings-button").onclick = function(s, e) {
 			app.remotePopUp();
 		};
@@ -19,7 +27,7 @@ define(function (require) {
 				invoker.style.backgroundImage = 'url(icons/favorite.svg)';
 			else
 				invoker.style.backgroundImage = 'url(icons/notfavorite.svg)';
-			app.favoriteChanged(isFavorite);
+			app.setFilter({favorite: isFavorite});
 		};
 		
 		// Launch main screen
@@ -28,7 +36,6 @@ define(function (require) {
 		
 		// Load context
 		Util.loadContext(function() {
-			app.localeChanged(Util.getIndex());
 			app.draw();
 		});
     });

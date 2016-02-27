@@ -23,7 +23,7 @@ enyo.kind({
 	create: function() {
 		this.inherited(arguments);
 		this.computeSize();
-		this.localeChanged();
+		this.filterChanged();
 		this.favorite = false;
 	},
 	
@@ -58,6 +58,7 @@ enyo.kind({
 					kind: "Canope.Item",
 					code: collection[this.index+i].id,
 					title: collection[this.index+i].title,
+					subject: collection[this.index+i].subject,
 					isLocal: collection[this.index+i].local,
 					isFavorite: Util.getFavorite(collection[this.index+i].id),
 					imgSuffix: collection[this.index+i].img,
@@ -93,8 +94,12 @@ enyo.kind({
 		this.$.videoDialog.setItem(item);
 	},
 	
-	localeChanged: function(index) {
-		this.collection = Util.getCollection(this.favorite);
+	setFilter: function(filter) {
+		Util.setFilter(filter);
+	},
+	
+	filterChanged: function(index) {
+		this.collection = Util.getCollection();
 		this.index = (index !== undefined ? index : 0);
 		this.saveContext();
 		this.draw();	
@@ -107,14 +112,6 @@ enyo.kind({
 	
 	remoteChanged: function() {
 		this.draw();
-	},
-	
-	favoriteChanged: function(favorite) {
-		this.favorite = favorite;
-		this.collection = Util.getCollection(this.favorite);
-		this.index = 0;
-		this.saveContext();
-		this.draw();	
 	},
 	
 	saveContext: function() {

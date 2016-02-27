@@ -8,7 +8,7 @@ Util = {};
 // Activity context handling
 var app;
 Util.context = {
-	language: "fr",
+	filter: {subject: "", text: "", favorite: false},
 	server: constant.canopeServer,
 	favorites: {"0393": true},
 	readtimes: {},
@@ -39,23 +39,27 @@ Util.loadContext = function(callback, loaded) {
 };
 
 // Context update
-Util.setLanguage = function(lang) {
-	Util.context.language = lang;
-	app.localeChanged();
+Util.setFilter = function(newfilter) {
+	if (newfilter.favorite !== undefined) Util.context.filter.favorite = newfilter.favorite;
+	if (newfilter.subject !== undefined) Util.context.filter.subject = newfilter.subject;
+	if (newfilter.text !== undefined) Util.context.filter.text = newfilter.text;
+	app.filterChanged();
 }
-Util.getLanguage = function() {
-	return Util.context.language;
+Util.getFilter = function() {
+	return Util.context.filter;
 }
 
-Util.getCollection = function(favorite) {
+Util.getCollection = function() {
 	var database;
 	database = database_fr;
-	if (!favorite)
-		return database;
 	var filter = [];
-	for (var i = 0 ; i < database.length ; i++)
-		if (Util.getFavorite(database[i].id))
-			filter.push(database[i]);
+	for (var i = 0 ; i < database.length ; i++) {
+		if (Util.context.filter.favorite && !Util.getFavorite(database[i].id))
+			continue;
+		if (Util.context.filter.subject.length > 0 && database[i].subject != Util.getSubjectFromFilter(Util.context.filter.subject) )
+			continue;
+		filter.push(database[i]);
+	}
 	return filter;
 }
 
@@ -103,4 +107,31 @@ Util.onSugar = function() {
 		return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
     };
 	return getUrlParameter("onsugar");
+}
+
+Util.getClassFromSubject = function(subject) {
+	var result = "itemOverlay";
+	if (subject == "Langue française") {
+		result += "French";
+	} else if (subject == "Mathématiques") {
+		result += "Math";
+	} else if (subject == "Sciences") {
+		result += "Science";
+	} else if (subject == "Instruction civique et histoire géographie") {
+		result += "Civism";
+	}
+	return result;
+}
+
+Util.getSubjectFromFilter = function(filter) {
+	if (filter == "French") {
+		return "Langue française";
+	} else if (filter == "Math") {
+		return "Mathématiques";
+	} else if (filter == "Science") {
+		return "Sciences";
+	} else if (filter == "Civism") {
+		return "Instruction civique et histoire géographie";
+	}
+	return "";
 }

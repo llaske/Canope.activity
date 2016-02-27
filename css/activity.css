@@ -2,6 +2,10 @@
   background-image: url(../activity/activity-icon.svg);
 }
 
+#main-toolbar #filter-button {
+  background-image: url(../icons/filter.svg);
+}
+
 #main-toolbar #settings-button {
   background-image: url(../icons/settings.svg);
 }
@@ -32,16 +36,20 @@
 	background-color: #9c9a9c;
 }
 
-#en-button {
-	background-image:url(../icons/en.svg);
+#french-button {
+	background-image:url(../icons/grammar.svg);
 }
 
-#es-button {
-	background-image:url(../icons/es.svg);
+#math-button {
+	background-image:url(../icons/calculator.svg);
 }
 
-#fr-button {
-	background-image:url(../icons/fr.svg);
+#science-button {
+	background-image:url(../icons/earth.svg);
+}
+
+#civism-button {
+	background-image:url(../icons/institution.svg);
 }
 
 #remote-button {
@@ -123,6 +131,18 @@
 	color: white;
 	opacity: 0.8;
 	position: absolute;
+}
+.itemOverlayMath {
+	background-color: #ff4848;
+}
+.itemOverlayFrench {
+	background-color: #2f74d0;
+}
+.itemOverlayScience {
+	background-color: #27de5f;
+}
+.itemOverlayCivism {
+	background-color: #dd75dd;
 }
 
 .itemPlay {

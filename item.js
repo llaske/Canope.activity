@@ -5,6 +5,7 @@ enyo.kind({
 	published: {
 		code: "",
 		title: "",
+		subject: "",
 		isLocal: false,
 		isFavorite: false,
 		imgSuffix: ""
@@ -57,6 +58,11 @@ enyo.kind({
 	
 	titleChanged: function() {
 		this.$.itemTitle.setContent(this.title);
+		this.$.itemOverlay.removeClass("itemOverlayMath");
+		this.$.itemOverlay.removeClass("itemOverlayFrench");
+		this.$.itemOverlay.removeClass("itemOverlayScience");
+		this.$.itemOverlay.removeClass("itemOverlayCivism");
+		this.$.itemOverlay.addClass(Util.getClassFromSubject(this.subject));
 	},
 	
 	isLocalChanged: function() {
