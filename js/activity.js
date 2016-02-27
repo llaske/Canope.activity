@@ -10,7 +10,6 @@ define(function (require) {
 
 		// Create palette
 		document.getElementById("settings-button").onclick = function(s, e) {
-			settingspalette.popDown();
 			app.remotePopUp();
 		};
 		document.getElementById("favorite-button").onclick = function(s, e) {

@@ -30,12 +30,12 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1063"
+     inkscape:window-height="661"
      id="namedview21"
      showgrid="false"
      inkscape:zoom="4.2909091"
-     inkscape:cx="27.5"
+     inkscape:cx="-12.584746"
      inkscape:cy="27.5"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -43,7 +43,7 @@
      inkscape:current-layer="svg2" /><g
      display="block"
      id="activity-browse"
-     style="fill:none;stroke:#ffffff">
+     style="fill:#282828;stroke:#ffffff;fill-opacity:1">
 	<circle
    cx="27.375"
    cy="27.5"
@@ -53,25 +53,25 @@
    stroke="#010101"
    stroke-width="3.5"
    id="circle5"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 	<g
    display="inline"
    id="g7"
-   style="fill:none;stroke:#ffffff">
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1">
 		<path
    d="M27.376,7.598c0,0-11.205,8.394-11.205,19.976    c0,11.583,11.205,19.829,11.205,19.829"
    fill="#FFFFFF"
    stroke="#010101"
    stroke-width="3.5"
    id="path9"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 		<path
    d="M27.376,7.598c0,0,11.066,9.141,11.066,19.976    c0,10.839-11.066,19.829-11.066,19.829"
    fill="#FFFFFF"
    stroke="#010101"
    stroke-width="3.5"
    id="path11"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 		<line
    fill="#FFFFFF"
    stroke="#010101"
@@ -81,7 +81,7 @@
    y1="7.598"
    y2="47.402"
    id="line13"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 		<line
    fill="#FFFFFF"
    stroke="#010101"
@@ -91,7 +91,7 @@
    y1="7.598"
    y2="47.402"
    id="line15"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 		<line
    fill="#FFFFFF"
    stroke="#010101"
@@ -101,7 +101,7 @@
    y1="7.598"
    y2="47.402"
    id="line17"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 		<line
    fill="#FFFFFF"
    stroke="#010101"
@@ -111,6 +111,6 @@
    y1="27.5"
    y2="27.5"
    id="line19"
-   style="fill:none;stroke:#ffffff" />
+   style="fill:#282828;stroke:#ffffff;fill-opacity:1" />
 	</g>
 </g></svg>

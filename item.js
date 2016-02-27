@@ -6,7 +6,8 @@ enyo.kind({
 		code: "",
 		title: "",
 		isLocal: false,
-		isFavorite: false
+		isFavorite: false,
+		imgSuffix: ""
 	},
 	events: {
 		onVideoPlayed: ""
@@ -17,7 +18,7 @@ enyo.kind({
 		{ name: "background", classes: "itemImage", kind: "Image", src: "images/notloaded.png" },
 		{ name: "itemImage", classes: "itemImage", kind: "Image", showing: false, onload: "imageLoaded", onerror: "defaultImage", ontap: "showVideo" },
 		{ name: "itemPlay", classes: "itemPlay", kind: "Image", showing: false, src: "icons/play.svg", ontap: "showVideo" },
-		{ name: "itemFavorite", classes: "itemFavorite", kind: "Image", src: "icons/favorite.svg", showing: false, ontap: "showVideo" },
+		{ name: "itemFavorite", classes: "itemFavorite", kind: "Image", src: "icons/notfavorite.svg", showing: false, ontap: "showVideo" },
 		{ name: "itemRemote", classes: "itemRemote", kind: "Image", src: "icons/remote.svg", showing: false, ontap: "showVideo" },
 		{ name: "itemOverlay", classes: "itemOverlay" },
 		{ name: "itemTitle", classes: "itemTitle", content: "" }
@@ -35,23 +36,23 @@ enyo.kind({
 	// Item setup
 	nameChanged: function() {
 		if (this.isLocal)
-			this.$.itemImage.setAttribute("src", "images/database/"+this.code+".png");
+			this.$.itemImage.setAttribute("src", "images/database/"+this.code+this.imgSuffix+".png");
 		else if (Util.isCanopeServer()) {
 			if (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) {
 				// HACK: When in Chrome App image should be load using a XmlHttpRequest
 				var xhr = new XMLHttpRequest();
 				var that = this;
-				xhr.open('GET', constant.canopeImages+this.code+".png", true);
+				xhr.open('GET', constant.canopeImages+this.code+this.imgSuffix+".png", true);
 				xhr.responseType = 'blob';
 				xhr.onload = function(e) {
 					that.$.itemImage.setAttribute("src", window.URL.createObjectURL(this.response));
 				};
 				xhr.send();		
 			} else {
-				this.$.itemImage.setAttribute("src", constant.canopeImages+this.code+".png");
+				this.$.itemImage.setAttribute("src", constant.canopeImages+this.code+this.imgSuffix+".png");
 			}
 		} else
-			this.$.itemImage.setAttribute("src", Util.getServer()+"/images/"+this.code+".png");
+			this.$.itemImage.setAttribute("src", Util.getServer()+"/images/"+this.code+this.imgSuffix+".png");
 	},
 	
 	titleChanged: function() {

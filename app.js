@@ -60,6 +60,7 @@ enyo.kind({
 					title: collection[this.index+i].title,
 					isLocal: collection[this.index+i].local,
 					isFavorite: Util.getFavorite(collection[this.index+i].id),
+					imgSuffix: collection[this.index+i].img,
 					onVideoPlayed: "showVideo"
 				},
 				{ owner: this }
@@ -68,8 +69,10 @@ enyo.kind({
 		
 		// Display button
 		this.$.previousbutton.setShowing(this.index-constant.pageCount >= 0);
-		this.$.pagecount.setContent((len?1:0)+Math.ceil(this.index/constant.pageCount)+"/"+Math.ceil(len/constant.pageCount));
-		this.$.nextbutton.setShowing(this.index+constant.pageCount <= len);
+		var currentPage = (len?1:0)+Math.ceil(this.index/constant.pageCount);
+		var lastPage = Math.ceil(len/constant.pageCount);
+		this.$.pagecount.setContent(currentPage+"/"+lastPage);
+		this.$.nextbutton.setShowing(currentPage < lastPage);
 	},
 	
 	// Page event
