@@ -33,6 +33,8 @@ define(function (require) {
 		// Launch main screen
 		app = new Canope.App({activity: activity});
 		app.renderInto(document.getElementById("viewer"));
+		var search = new Sugar.SearchField();
+		search.renderInto(document.getElementById("search"));
 		
 		// Load context
 		Util.loadContext(function() {

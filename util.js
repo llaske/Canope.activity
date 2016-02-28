@@ -58,6 +58,8 @@ Util.getCollection = function() {
 			continue;
 		if (Util.context.filter.subject.length > 0 && database[i].subject != Util.getSubjectFromFilter(Util.context.filter.subject) )
 			continue;
+		if (Util.context.filter.text.length > 0 && database[i].title.toLowerCase().indexOf(Util.context.filter.text.toLowerCase()) == -1)
+			continue;
 		filter.push(database[i]);
 	}
 	return filter;
