@@ -5,7 +5,7 @@ enyo.kind({
 	kind: "FittableRows",
 	published: {activity: null},
 	components: [
-		{name: "content", kind: "Scroller", fit: true, classes: "main-content", onresize: "resize", 
+		{name: "content", kind: "Scroller", fit: true, classes: "main-content", onresize: "resize",
 		components: [
 			{name: "items", classes: "items", components: [
 			]}
@@ -18,7 +18,7 @@ enyo.kind({
 		{name: "videoDialog", kind: "Canope.VideoDialog"},
 		{name: "remoteDialog", kind: "Canope.RemoteDialog"}
 	],
-	
+
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
@@ -26,7 +26,7 @@ enyo.kind({
 		this.filterChanged();
 		this.favorite = false;
 	},
-	
+
 	computeSize: function() {
 		var toolbar = document.getElementById("main-toolbar");
 		var toolbaroffset = !Util.onSugar() ? toolbar.offsetHeight : 37.5;
@@ -34,21 +34,21 @@ enyo.kind({
 		var canvas_height = canvas.offsetHeight;
 		this.$.content.applyStyle("height", (canvas_height-(toolbaroffset*2))+"px");
 	},
-	
+
 	resize: function() {
 		if (!Util.onSugar()) {
 			this.computeSize();
 			this.draw();
 		}
 	},
-	
+
 	// Draw screen
 	draw: function() {
 		// Remove items
 		var items = [];
 		enyo.forEach(this.$.items.getControls(), function(item) { items.push(item); });
 		for (var i = 0 ; i < items.length ; i++) { items[i].destroy();	}
-		
+
 		// Display items
 		var collection = this.collection;
 		var len = collection.length;
@@ -67,7 +67,7 @@ enyo.kind({
 				{ owner: this }
 			).render();
 		}
-		
+
 		// Display button
 		this.$.previousbutton.setShowing(this.index-constant.pageCount >= 0);
 		var currentPage = (len?1:0)+Math.ceil(this.index/constant.pageCount);
@@ -75,45 +75,45 @@ enyo.kind({
 		this.$.pagecount.setContent(currentPage+"/"+lastPage);
 		this.$.nextbutton.setShowing(currentPage < lastPage);
 	},
-	
+
 	// Page event
 	showPrevious: function() {
 		this.index -= constant.pageCount;
 		this.saveContext();
 		this.draw();
 	},
-	
+
 	showNext: function() {
 		this.index += constant.pageCount;
 		this.saveContext();
-		this.draw();	
+		this.draw();
 	},
-	
+
 	showVideo: function(item) {
 		this.$.videoDialog.show();
 		this.$.videoDialog.setItem(item);
 	},
-	
+
 	setFilter: function(filter) {
 		Util.setFilter(filter);
 	},
-	
+
 	filterChanged: function(index) {
 		this.collection = Util.getCollection();
 		this.index = (index !== undefined ? index : 0);
 		this.saveContext();
-		this.draw();	
+		this.draw();
 	},
-	
+
 	remotePopUp: function() {
 		this.$.remoteDialog.init();
 		this.$.remoteDialog.show();
 	},
-	
+
 	remoteChanged: function() {
 		this.draw();
 	},
-	
+
 	saveContext: function() {
 		Util.setIndex(this.index);
 		Util.saveContext();

@@ -10,14 +10,14 @@ enyo.kind({
 		{name: "text", kind: "enyo.Input", classes: "search-field-input", onfocus: "onfocus", onblur:"onblur", oninput:"oninput"},
 		{name: "icon", classes: "search-field-iconcancel", showing: false, ontap: "onclick"}
 	],
-	
+
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
 		this.textChanged();
 		this.placeholderChanged();
-	},	
-	
+	},
+
 	// Property changed
 	textChanged: function() {
 		this.$.text.setValue(this.text);
@@ -26,11 +26,11 @@ enyo.kind({
 		else
 			this.$.icon.hide();
 	},
-	
+
 	placeholderChanged: function() {
 		this.$.text.setPlaceholder(this.placeholder);
 	},
-	
+
 	// Event handling to mimic Sugar focus handling
 	onfocus: function() {
 		// Focus on input field, change background of border box
@@ -43,7 +43,7 @@ enyo.kind({
 		this.addRemoveClass('search-field-border-nofocus', true);
 		this.addRemoveClass('search-field-border-focus', false);
 	},
-	
+
 	oninput: function() {
 		// Input text changed, notify parent
 		this.text = this.$.text.getValue();
@@ -54,12 +54,12 @@ enyo.kind({
 		else
 			this.$.icon.hide();
 	},
-	
+
 	onclick: function() {
-		this.text = "";		
+		this.text = "";
 		this.$.text.setValue(this.text);
 		app.setFilter({text: this.text});
 		this.textChanged();
 		this.doTextChanged();
-	}	
+	}
 });

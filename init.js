@@ -3,20 +3,23 @@ if (Util.onSugar()) {
 	// Remove toolbar
 	var toolbar = document.getElementById("main-toolbar");
 	document.getElementById("body").removeChild(toolbar);
-	
+
 	// Handle palette event from Python
 	Util.sugar = new Sugar();
-	Util.sugar.connect('language_clicked', function(language) {
-		Util.setLanguage(language);
+	Util.sugar.connect('filter_clicked', function(text) {
+		app.setFilter({subject: text});
 		Util.saveContext();
 	});
 	Util.sugar.connect('settings_clicked', function(isFavorite) {
 		app.remotePopUp();
 	});
 	Util.sugar.connect('favorite_clicked', function(isFavorite) {
-		app.favoriteChanged(isFavorite);
+		app.setFilter({favorite: isFavorite});
 	});
-	
+	Util.sugar.connect('text_typed', function(textfilter) {
+		app.setFilter({text: textfilter});
+	});
+
 	// Handle context event from Python
 	Util.sugar.connect('load-context', function(context) {
 		//console.log("#JS LOAD CONTEXT "+JSON.stringify(context));
@@ -27,7 +30,7 @@ if (Util.onSugar()) {
 		//console.log("#JS SAVE CONTEXT "+JSON.stringify(Util.context));
 		Util.sugar.sendMessage("save-context", Util.context);
 	});
-	
+
 	// Launch main screen
 	app = new Canope.App({activity: null});
 	constant.videoType = "ogv";

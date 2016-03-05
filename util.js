@@ -16,17 +16,17 @@ Util.context = {
 };
 Util.saveContext = function() {
 	if (Util.onSugar() || !app || !app.activity) return;
-	var datastoreObject = app.activity.getDatastoreObject();	
+	var datastoreObject = app.activity.getDatastoreObject();
 	var jsonData = JSON.stringify(Util.context);
 	datastoreObject.setDataAsText(jsonData);
 	//console.log("SAVE CONTEXT <"+jsonData+">");
-	datastoreObject.save(function() {});	
+	datastoreObject.save(function() {});
 };
 Util.loadContext = function(callback, loaded) {
 	if (!Util.onSugar()) {
 		var datastoreObject = app.activity.getDatastoreObject();
 		datastoreObject.loadAsText(function (error, metadata, data) {
-			//console.log("LOAD CONTEXT <"+data+">");	
+			//console.log("LOAD CONTEXT <"+data+">");
 			var context = JSON.parse(data);
 			if (context) {
 				Util.context = context;

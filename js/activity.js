@@ -29,13 +29,13 @@ define(function (require) {
 				invoker.style.backgroundImage = 'url(icons/notfavorite.svg)';
 			app.setFilter({favorite: isFavorite});
 		};
-		
+
 		// Launch main screen
 		app = new Canope.App({activity: activity});
 		app.renderInto(document.getElementById("viewer"));
 		var search = new Sugar.SearchField();
 		search.renderInto(document.getElementById("search"));
-		
+
 		// Load context
 		Util.loadContext(function() {
 			app.draw();

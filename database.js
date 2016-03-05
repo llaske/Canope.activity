@@ -6,7 +6,7 @@ var database_fr = [
 	{id:"0418", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son semi voyelle", title:"Découvrir le son [j] et ses graphies (1/2)"},
 	{id:"0419", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son semi voyelle", title:"Découvrir le son [j] et ses graphies (2/2)"},
 	{id:"0420", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son semi voyelle", title:"Découvrir le son [wɛ̃] et sa graphie"},
-	{id:"0393", img:"", local: true, subject:"Langue française", thema:"Lecture", category:"Correspondance son voyelle", title:"Découvrir le son [a] et sa graphie"},
+	{id:"0393", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son voyelle", title:"Découvrir le son [a] et sa graphie"},
 	{id:"0394", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son voyelle", title:"Découvrir le son [i] et ses graphies"},
 	{id:"0395", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son voyelle", title:"Découvrir le son [o] et ses graphies"},
 	{id:"0396", img:"", subject:"Langue française", thema:"Lecture", category:"Correspondance son voyelle", title:"Découvrir le son [e] et ses graphies"},

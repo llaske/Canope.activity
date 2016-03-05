@@ -24,7 +24,7 @@ enyo.kind({
 		{ name: "itemOverlay", classes: "itemOverlay" },
 		{ name: "itemTitle", classes: "itemTitle", content: "" }
 	],
-	
+
 	// Constructor
 	create: function() {
 		this.inherited(arguments);
@@ -33,7 +33,7 @@ enyo.kind({
 		this.isLocalChanged();
 		this.isFavoriteChanged();
 	},
-	
+
 	// Item setup
 	nameChanged: function() {
 		if (this.isLocal)
@@ -48,14 +48,14 @@ enyo.kind({
 				xhr.onload = function(e) {
 					that.$.itemImage.setAttribute("src", window.URL.createObjectURL(this.response));
 				};
-				xhr.send();		
+				xhr.send();
 			} else {
 				this.$.itemImage.setAttribute("src", constant.canopeImages+this.code+this.imgSuffix+".png");
 			}
 		} else
 			this.$.itemImage.setAttribute("src", Util.getServer()+"/images/"+this.code+this.imgSuffix+".png");
 	},
-	
+
 	titleChanged: function() {
 		this.$.itemTitle.setContent(this.title);
 		this.$.itemOverlay.removeClass("itemOverlayMath");
@@ -64,22 +64,22 @@ enyo.kind({
 		this.$.itemOverlay.removeClass("itemOverlayCivism");
 		this.$.itemOverlay.addClass(Util.getClassFromSubject(this.subject));
 	},
-	
+
 	isLocalChanged: function() {
-		this.$.itemRemote.setShowing(!this.isLocal);	
+		this.$.itemRemote.setShowing(!this.isLocal);
 	},
-	
+
 	isFavoriteChanged: function() {
 		this.$.itemFavorite.setShowing(this.isFavorite);
 	},
-	
+
 	imageLoaded: function() {
 		this.$.itemImage.setShowing(true);
 		this.$.itemPlay.setShowing(true);
 		this.$.spinner.setShowing(false);
 		this.$.background.setShowing(false);
 	},
-	
+
 	defaultImage: function() {
 		if (this.isLocal) {
 			 // HACK: Local not load mean that video not present locally
@@ -95,7 +95,7 @@ enyo.kind({
 		this.$.spinner.setShowing(false);
 		this.$.background.setShowing(false);
 	},
-	
+
 	videoURL: function() {
 		if (this.isLocal)
 			return "videos/database/"+this.code+"_"+constant.videoQuality+"."+constant.videoType;
@@ -103,9 +103,9 @@ enyo.kind({
 			return constant.canopeServer+this.code+"_"+constant.videoQuality+".mp4";
 		else
 			return Util.getServer()+"/videos/"+this.code+"_"+constant.videoQuality+"."+constant.videoType;
-	
+
 	},
-	
+
 	// Handle event
 	showVideo: function() {
 		this.doVideoPlayed();
